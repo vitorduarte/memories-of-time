@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  text: MyText
+  lat: 9.99
+  long: 9.99
+  weather: MyString
+
+two:
+  title: MyString
+  text: MyText
+  lat: 9.99
+  long: 9.99
+  weather: MyString
