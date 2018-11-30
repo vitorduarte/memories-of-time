@@ -14,7 +14,6 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
   // Or with jQuery
-  M.AutoInit();
 
   $(document).ready(function(){
     $('.collapsible').collapsible();
