@@ -13,7 +13,7 @@ $(document).ready(function(){
 
 <div class="row"></div>
 <div class="row"></div>
-<div class="container">
+<div class="container z-depth-2">
 <ul class="collapsible">
 <% @posts.each do |post| %>
     <li>
@@ -26,13 +26,18 @@ $(document).ready(function(){
 
           <div class="col s12 m4 l8 center-align">
             <span class="flow-text truncate"> <%= post.title %> </span>
+            <h6 class="center-align"> <%= post.created_at.strftime("%d") %> <%= post.created_at.strftime("%A") %>, <%= post.created_at.strftime("%Y") %></h6>
           </div>
 
           <div class="col s12 m4 l2 right-align">
-            <div rows>
-              <h6 class="center-align"> <%= post.created_at.strftime("%d") %> <%= post.created_at.strftime("%a") %></h6>
-              <h6 class="center-align"><%= post.created_at.strftime("%Y") %></h6>
-            </div>
+          </div>
+
+          <div class="col s6 m2 l1 valign-wrapper">
+
+             <td><%= link_to '<i class="material-icons indigo-text" style="font-size: 30px">delete</i>'.html_safe,
+              post_path(post),
+              method: :delete,
+              data: { confirm: 'Are you sure?' } %></td>
           </div>
         </div>
       </div>

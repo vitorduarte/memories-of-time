@@ -18,10 +18,16 @@ class PostsController < ApplicationController
     geo_cord_params
     weather_params
     if @post.save
-      redirect_to @post
+      redirect_to action: "index"
     else
       render 'new'
     end
+  end
+
+  def destroy
+    @post = Post.find(params[:id])
+    @post.destroy
+    redirect_to posts_path
   end
 
   private
