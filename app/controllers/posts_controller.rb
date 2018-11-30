@@ -31,8 +31,7 @@ class PostsController < ApplicationController
   end
 
   def user_ip_data
-    # ip_add = request.remote_ip
-    ip_add = '177.157.104.63'
+    ip_add = request.remote_ip
     base_url = 'http://api.ipstack.com/'
     access_key = ENV['IPSTACK_KEY']
 
