@@ -1,18 +1,30 @@
-<h2> Memories of Time</h2>
-<table>
-  <tr>
-    <th>Title</th>
-    <th>Text</th>
-    <th colspan="2"></th>
-  </tr>
+<nav>
+<div class="nav-wrapper indigo darken-2">
+  <a href="#" class="brand-logo center"> Memories of Time </a>
+  </ul>
+</div>
+</nav>
 
-  <% @posts.each do |post| %>
-    <tr>
-      <td><%= post.title %></td>
-      <td><%= post.text %></td>
-      <td><%= link_to 'Show', post_path(post) %></td>
-    </tr>
-  <% end %>
-</table>
+<div class="row"></div>
+<div class="container">
+<ul class="collapsible">
+<% @posts.each do |post| %>
+    <li>
+      <div class="collapsible-header">
+        <i class="material-icons">filter_drama</i>
+        <%= post.title %>
+      </div>
 
-<%= link_to 'New', new_post_path %>
+      <div class="collapsible-body">
+        <span>
+          <%= post.text %>
+        </span>
+      </div>
+    </li>
+<% end %>
+</ul>
+</div>
+
+<div class="fixed-action-btn">
+  <%= link_to '<i class="large material-icons">mode_edit</i>'.html_safe, new_post_path , :class => "btn-floating btn-large red"%>
+</div>
