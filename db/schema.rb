@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_28_020953) do
+ActiveRecord::Schema.define(version: 2018_11_30_011843) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -18,11 +18,15 @@ ActiveRecord::Schema.define(version: 2018_11_28_020953) do
   create_table "posts", force: :cascade do |t|
     t.string "title"
     t.text "text"
-    t.decimal "lat"
-    t.decimal "long"
     t.string "weather"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "country_code"
+    t.string "country_name"
+    t.string "region_code"
+    t.string "region_name"
+    t.decimal "latitude"
+    t.decimal "longitude"
   end
 
 end

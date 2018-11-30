@@ -11,7 +11,7 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     # Get cordinate parameters
-    @post.lat, @post.long = geo_cord_params
+    geo_cord_params
     @post.save
     redirect_to @post
   end
@@ -39,8 +39,12 @@ class PostsController < ApplicationController
 
   def geo_cord_params
     ip_data = user_ip_data
-    latitude = ip_data['latitude']
-    longitude = ip_data['longitude']
-    [latitude, longitude]
+    @post.latitude = ip_data['latitude']
+    @post.longitude = ip_data['longitude']
+    @post.country_name = ip_data['country_name']
+    @post.region_name = ip_data['region_name']
+    @post.region_code = ip_data['region_code']
+    @post.country_code = ip_data['country_code']
+    @post.country_name = ip_data['country_name']
   end
 end
