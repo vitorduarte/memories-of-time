@@ -6,21 +6,24 @@ class PostsController < ApplicationController
   end
 
   def new
+    @post = Post.new
   end
 
   def create
     @post = Post.new(post_params)
     geo_cord_params
     weather_params
-
-    @post.save
-    redirect_to @post
+    if @post.save
+      redirect_to @post
+    else
+      render 'new'
+    end
   end
 
   private
 
   def post_params
-    params.require(:posts).permit(:title, :text)
+    params.require(:post).permit(:title, :text,)
   end
 
   def user_ip_data
@@ -33,9 +36,7 @@ class PostsController < ApplicationController
     params = { access_key: access_key }
 
     uri.query = URI.encode_www_form(params)
-    res = Net::HTTP.get_response(uri)
-    puts res
-    JSON.parse(res.body)
+    Net::HTTP.get_response(uri)
   end
 
   def user_weather_data
@@ -45,16 +46,16 @@ class PostsController < ApplicationController
     access_key = ENV['OPEN_WEATHER_KEY']
     params = { appid: access_key, lat: @post.latitude, lon: @post.longitude }
     uri.query = URI.encode_www_form(params)
-    puts '\n uri: '
-    puts uri
-    res = Net::HTTP.get_response(uri)
-    puts '\n Weather data: '
-    puts res.body
-    JSON.parse(res.body)
+    Net::HTTP.get_response(uri)
   end
 
   def geo_cord_params
-    ip_data = user_ip_data
+    ip_resp = user_ip_data
+    if ip_resp.is_a? Net::HTTPSuccess
+      ip_data = JSON.parse(ip_resp.body)
+    else
+      return { 'error' => 'Error with IP Stack API' }
+    end
 
     @post.latitude = ip_data['latitude']
     @post.longitude = ip_data['longitude']
@@ -66,7 +67,12 @@ class PostsController < ApplicationController
   end
 
   def weather_params
-    weather_data = user_weather_data
+    weather_resp = user_weather_data
+    if weather_resp.is_a? Net::HTTPSuccess
+      weather_data = JSON.parse(weather_resp.body)
+    else
+      return { 'error' => 'Error with Open Weather Map API' }
+    end
     weather = weather_data['weather'][0]
     weather_main = weather_data['main']
 

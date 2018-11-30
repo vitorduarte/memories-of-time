@@ -1,6 +1,31 @@
 <h1>Insert your memory</h1>
 
-<%= form_with scope: :posts, url: posts_path, local: true do |form| %>
+<%= form_with scope: :post, url: posts_path, local: true do |form| %>
+
+  <% if @post.errors.any? %>
+    <div id="error_explanation">
+      <ul>
+        <% @post.errors.full_messages.each do |msg| %>
+          <% msg_init = msg.split[0] %>
+          <% api_error = false %>
+          <% if (msg_init == 'Country' ||
+                msg_init == 'Region' ||
+                msg_init == 'Latitude' ||
+                msg_init == 'Longitude' ||
+                msg_init == 'Weather' ||
+                msg_init == 'Temp') %>
+            <% api_error = true %>
+            <li>Could not get the memory metadata. Please, check the IP Stack and Open Weather APIs</li>
+          <% else %>
+            <li><%= msg %></li>
+          <% end %>
+          <% break if (api_error == true) %>
+        <% end %>
+
+      </ul>
+    </div>
+  <% end %>
+
   <p>
     <%= form.label :title %><br>
     <%= form.text_field :title %>
