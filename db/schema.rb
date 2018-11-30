@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_30_011843) do
+ActiveRecord::Schema.define(version: 2018_11_30_021018) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -18,7 +18,6 @@ ActiveRecord::Schema.define(version: 2018_11_30_011843) do
   create_table "posts", force: :cascade do |t|
     t.string "title"
     t.text "text"
-    t.string "weather"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "country_code"
@@ -27,6 +26,11 @@ ActiveRecord::Schema.define(version: 2018_11_30_011843) do
     t.string "region_name"
     t.decimal "latitude"
     t.decimal "longitude"
+    t.string "weather_description"
+    t.string "weather_icon"
+    t.decimal "temp"
+    t.decimal "temp_min"
+    t.decimal "temp_max"
   end
 
 end

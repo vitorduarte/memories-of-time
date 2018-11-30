@@ -33,7 +33,15 @@
 
 <p>
   <strong>Weather:</strong>
-  <%= @post.weather %>
+  <%= @post.weather_description %> ||
+  <%= @post.weather_icon %>
+</p>
+
+<p>
+  <strong>Temperature:</strong>
+  <%= @post.temp %> <br>
+  Min: <%= @post.temp_min %> <br>
+  Max: <%= @post.temp_max %>
 </p>
 
 <p>
