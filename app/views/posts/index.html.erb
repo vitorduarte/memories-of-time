@@ -17,11 +17,25 @@ $(document).ready(function(){
 <ul class="collapsible">
 <% @posts.each do |post| %>
     <li>
-      <div class="collapsible-header">
-        <i class="material-icons">filter_drama</i>
-        <span class="flow-text"> <%= post.title %> </span>
-      </div>
+      <div class="row">
+        <div class="collapsible-header">
+          <div class="col s12 m4 l2 left-align">
+            <%= image_tag('http://openweathermap.org/img/w/' + post.weather_icon + '.png') %> <br>
+            <h8><%= post.temp - 273.15 %> &deg;C </h8>
+          </div>
 
+          <div class="col s12 m4 l8 center-align">
+            <span class="flow-text truncate"> <%= post.title %> </span>
+          </div>
+
+          <div class="col s12 m4 l2 right-align">
+            <div rows>
+              <h6 class="center-align"> <%= post.created_at.strftime("%d") %> <%= post.created_at.strftime("%a") %></h6>
+              <h6 class="center-align"><%= post.created_at.strftime("%Y") %></h6>
+            </div>
+          </div>
+        </div>
+      </div>
       <div class="collapsible-body">
         <span>
           <%= post.text %>
@@ -30,6 +44,7 @@ $(document).ready(function(){
     </li>
 <% end %>
 </ul>
+</div>
 </div>
 
 <div class="fixed-action-btn">
