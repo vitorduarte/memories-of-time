@@ -15,10 +15,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Or with jQuery
 
-  $(document).ready(function(){
-    $('.collapsible').collapsible();
-  });
-
   $(document).ready(function() {
     M.updateTextFields();
   });

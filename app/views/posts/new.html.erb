@@ -1,6 +1,10 @@
 <nav>
 <div class="nav-wrapper indigo">
-  <%= link_to "New Memory", posts_path, :class => "brand-logo center" %>
+  <%= link_to "New Memory", new_post_path, :class => "brand-logo center" %>
+  <ul id="nav-mobile" class="left hide-on-med-and-down">
+    <%= link_to '<i class="large material-icons">arrow_back</i>'.html_safe, posts_path, :class => "left hide-on-med-and-down" %>
+  </ul>
+
   </ul>
 </div>
 </nav>
